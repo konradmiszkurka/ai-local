@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" />
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
+
+            .container {
+                margin-top: 50px;
+            }
+
+            .form-container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-container h1 {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+
+            .form-container p {
+                font-size: 18px;
+                color: #555;
+            }
+
+            .form-container .form-control {
+                margin-bottom: 20px;
+            }
+
+            .form-container .btn-primary {
+                width: 100%;
+                font-size: 18px;
+                padding: 12px;
+                background-color: #007bff;
+                border-color: #007bff;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, border-color 0.3s ease;
+            }
+
+            .form-container .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #004085;
+            }
+
+            .form-container .btn-primary:focus {
+                box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+            }
+
+            .alert {
+                margin-top: 20px;
+            }
+        </style>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            (function() {
+                if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+                    window.chatbase = (...arguments) => {
+                        if (!window.chatbase.q) {
+                            window.chatbase.q = [];
+                        }
+                        window.chatbase.q.push(arguments);
+                    };
+                    window.chatbase = new Proxy(window.chatbase, {
+                        get(target, prop) {
+                            if (prop === "q") {
+                                return target.q;
+                            }
+                            return (...args) => target(prop, ...args);
+                        }
+                    });
+                }
+                const onLoad = function() {
+                    const script = document.createElement("script");
+                    script.src = "https://www.chatbase.co/embed.min.js";
+                    script.id = "OP-c8zxx56mLJdqxQMuXJ";
+                    script.domain = "www.chatbase.co";
+                    document.body.appendChild(script);
+                };
+                if (document.readyState === "complete") {
+                    onLoad();
+                } else {
+                    window.addEventListener("load", onLoad);
+                }
+            })();
+        </script>
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-container">
+                    <h1>Witaj w naszym systemie!</h1>
+                    <p>Wprowadź swój prompt i uzyskaj odpowiedź:</p>
+
+                    {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{ form_row(form.prompt, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                    {{ form_end(form) }}
+
+                    {% if form.vars.errors|length > 0 %}
+                        <div class="alert alert-danger mt-3">
+                            {% for error in form.vars.errors %}
+                                <p>{{ error.message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>
