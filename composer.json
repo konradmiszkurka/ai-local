@@ -7,7 +7,9 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
         "easycorp/easyadmin-bundle": "^4.23",
+        "phpoffice/phpspreadsheet": "^4.1",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2",
@@ -30,7 +32,10 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Breakers\\": "src/Breakers/",
+            "App\\Compartments\\": "src/Compartments/",
+            "App\\LmStudio\\": "src/LmStudio/"
         }
     },
     "autoload-dev": {

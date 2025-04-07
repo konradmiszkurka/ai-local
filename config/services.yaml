@@ -13,3 +13,23 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Breakers\:
+        resource: '../src/Breakers/*'
+        exclude: '../src/Breakers/{Entity,Repository}'
+
+    App\Compartments\:
+        resource: '../src/Compartments/*'
+        exclude: '../src/Compartments/{Entity,Repository}'
+
+    App\LmStudio\:
+        resource: '../src/LmStudio/*'
+        exclude: '../src/LmStudio/{Entity,Repository}'
+
+    App\Breakers\Command\ImportFootballDataCommand:
+        arguments:
+            $publicDir: '%kernel.project_dir%/public'
+
+    App\Compartments\Command\ImportClubRangesCommand:
+        arguments:
+            $publicDir: '%kernel.project_dir%/public'
