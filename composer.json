@@ -18,6 +18,7 @@
         "symfony/http-client": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
+        "symfony/validator": "7.2.*",
         "symfony/webpack-encore-bundle": "^2.2",
         "symfony/yaml": "7.2.*"
     },
@@ -35,7 +36,9 @@
             "App\\": "src/",
             "App\\Breakers\\": "src/Breakers/",
             "App\\Compartments\\": "src/Compartments/",
-            "App\\LmStudio\\": "src/LmStudio/"
+            "App\\LmStudio\\": "src/LmStudio/",
+            "App\\Shared\\": "src/Shared/",
+            "App\\UI\\": "src/UI/"
         }
     },
     "autoload-dev": {
@@ -76,6 +79,10 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.0",
-        "symfony/maker-bundle": "^1.62"
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "7.2.*",
+        "symfony/css-selector": "7.2.*",
+        "symfony/maker-bundle": "^1.62",
+        "symfony/phpunit-bridge": "^7.2"
     }
 }

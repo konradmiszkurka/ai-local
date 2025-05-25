@@ -1,5 +1,11 @@
-controllers:
+controllers_breakers:
     resource:
         path: ../src/Breakers/Controller
         namespace: App\Breakers\Controller
+    type: attribute
+
+controllers_ui:
+    resource:
+        path: ../src/UI/Controller
+        namespace: App\UI\Controller
     type: attribute

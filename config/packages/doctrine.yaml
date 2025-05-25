@@ -32,6 +32,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/LmStudio'
                 prefix: 'App\LmStudio'
                 alias: LmStudio
+            Shared:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Shared'
+                prefix: 'App\Shared'
+                alias: Shared
         controller_resolver:
             auto_mapping: false
 
